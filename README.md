@@ -30,7 +30,7 @@ We want to create complete compatibility between LCE & Java across all platforms
 This repository does **not** contain any Minecraft LCE source code. It is a clean-room reimplementation of the LCE protocol, which is heavily based on Java 1.3.2 & 1.6.1.
 
 ## Plugin Messaging & Bungeecord
-Full support for Bungeecord/Velocity IP forwarding & plugin messaging channels out of the box. For more details on which channels are supported, visit the [implementation source here](https://github.com/Briiqn/Reunion/src/main/java/dev/briiqn/reunion/core/network/server/channel/impl).
+Full support for Bungeecord/Velocity IP forwarding & plugin messaging channels out of the box. For more details on which channels are supported, visit the [implementation source here](https://github.com/Briiqn/Reunion/tree/master/src/main/java/dev/briiqn/reunion/core/network/server/channel/impl).
 
 ## API
 You can create plugins using our API. It is currently basic & incomplete, but functionality is being developed. Include the latest API jar from the releases tab as a `compileOnly` dependency. Documentation is a work in progress, but LLM generated Javadocs are available in the source.
