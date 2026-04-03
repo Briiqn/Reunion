@@ -40,6 +40,7 @@ We do **not** support client forks that backport features to LCE (such as adding
 
 ## Other Projects
 * **[Reunion Skins](https://github.com/Briiqn/reunion-skins):** Forward LCE skins to your backend so Java players can see them.
+* **[Reunion Limbo](https://github.com/Briiqn/reunion-limbo):** A simple limbo plugin
 
 ## Credits
 * **ViaVersion**
