@@ -39,7 +39,7 @@ You can create plugins using our API. It is currently basic & incomplete, but fu
 We do **not** support client forks that backport features to LCE (such as adding items/features that were never present), excluding official builds or backports initially developed by 4J Studios. Reunion supports 4J Studios' implementation as-is, not community additions.
 
 ## Other Projects
-* **[Reunion Skins](https://github.com/Briiqn/reunion-skins):** Forward LCE skins to your backend so Java players can see them.
+* **[Reunion Skins](https://github.com/Briiqn/reunion-skins):** Spigot plugin that forwards LCE skins to your backend so Java players can see them.
 * **[Reunion Limbo](https://github.com/Briiqn/reunion-limbo):** A simple limbo plugin
 
 ## Credits
