@@ -51,4 +51,5 @@ We do **not** support client forks that backport features to LCE (such as adding
 * **4J Studios**
 * **Velocity** (Our API is heavily inspired by theirs)
 * **LCEMP** (Initial TCP application layer for allowing connections from LCEMP compatible clients)
+* **Lucko** (protobufs for spark and sparkprofiler file format & website)
 * **PrismarineJS** (Collision & item remapping data)
