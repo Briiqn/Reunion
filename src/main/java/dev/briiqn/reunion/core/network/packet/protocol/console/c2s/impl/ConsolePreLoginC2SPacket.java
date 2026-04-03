@@ -68,6 +68,12 @@ public final class ConsolePreLoginC2SPacket extends ConsoleC2SPacket {
     session.setClientVersion(clientVersion);
     session.setPlayerName(playerName);
 
+    if (session.getServer().getSessions().size() >= session.getServer().getConfig().getGameplay().getMaxPlayers()) {
+      PacketManager.sendToConsole(session, new ConsoleDisconnectS2CPacket());
+      session.getConsoleChannel().close();
+      return;
+    }
+
     InetSocketAddress address =
         (InetSocketAddress) session.getConsoleChannel().remoteAddress();
 
@@ -82,7 +88,6 @@ public final class ConsolePreLoginC2SPacket extends ConsoleC2SPacket {
       }
 
       case HELD -> {
-        //we only send the prelogin to trick the client into thinking we have established a connection to the backend server when we haven't yet.
         PacketManager.sendToConsole(session,
             new ConsolePreLoginS2CPacket(clientVersion, playerName));
         session.getConsoleChannel().config().setAutoRead(true);

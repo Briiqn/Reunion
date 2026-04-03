@@ -4,3 +4,4 @@ logs/
 *.log
 saves/
 data/
+!/src/**/data/
