@@ -1,6 +1,7 @@
 plugins {
     java
     application
+    `maven-publish`
     id("com.gradleup.shadow") version "9.3.2"
     id("com.google.protobuf") version "0.9.4"
 }
@@ -13,7 +14,6 @@ repositories {
     maven("https://jitpack.io")
     maven("https://repo.viaversion.com")
     maven("https://repo.codemc.io/repository/maven-public/")
-
 }
 
 application {
@@ -42,8 +42,8 @@ dependencies {
     implementation("com.viaversion:viabackwards:5.8.1")
     implementation("com.viaversion:viarewind-common:4.1.0-SNAPSHOT")
     implementation("com.viaversion:viarewind:4.1.0-SNAPSHOT")
-    implementation("com.google.code.gson:gson:2.13.2") //for via
-    implementation("com.google.guava:guava:33.5.0-jre") //for via
+    implementation("com.google.code.gson:gson:2.13.2")
+    implementation("com.google.guava:guava:33.5.0-jre")
     implementation("it.unimi.dsi:fastutil:8.5.18")
     implementation("tools.profiler:async-profiler:4.3")
     implementation("com.google.protobuf:protobuf-java:3.25.3")
@@ -51,9 +51,10 @@ dependencies {
     implementation("org.xerial:sqlite-jdbc:3.51.3.0")
     implementation("org.jdbi:jdbi3-core:3.52.0")
     implementation("org.jdbi:jdbi3-sqlobject:3.52.0")
-    tasks.named<ProcessResources>("processResources") {
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
+}
+
+tasks.named<ProcessResources>("processResources") {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 protobuf {
@@ -116,4 +117,16 @@ val apiJar by tasks.registering(Jar::class) {
 tasks.register("buildAPI") {
     group = "build"
     dependsOn(apiJar)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = "reunion-api"
+            version = project.version.toString()
+
+            artifact(apiJar)
+        }
+    }
 }
