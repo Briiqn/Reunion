@@ -1,0 +1,37 @@
+connection:
+  java-host: 127.0.0.1 # ip address of the backend java server
+  java-port: 25564 # port of the backend java server
+  listen-port: 25565 # port the proxy listens on for console clients
+  player-prefix: "_" # prefix added to console player names on the backend
+
+auth:
+  online-mode: false # require premium microsoft login before joining? (do not use this if network-mode is true, use the login command in console to manage accounts)
+
+forwarding:
+  mode: NONE # ip/uuid forwarding mode (NONE, BUNGEECORD, BUNGEEGUARD, VELOCITY)
+  velocity-secret: "" # secret key for velocity forwarding
+  bungee-guard-token: "" # token for bungeeguard forwarding
+
+gameplay:
+  auto-accept-resource-packs: true # accept server resource packs automatically
+  infinite-world-hack: false # shift coordinates to support worlds larger than what LCE allows.
+  offload-chunks-to-disk: false # cache chunks on disk instead of in ram to save memory
+  release-item-on-interact: true # stop eating or blocking when interacting with objects (may fix issues with some anticheats)
+  max-players: 20 # player limit
+  min-model-size-blocks: 0.5 # minimum allowed custom skin height (blocks)
+  max-model-size-blocks: 2.0 # maximum allowed custom skin height (blocks)
+  max-model-byte-size: 131072 # maximum allowed skin file size to save resources processing.
+  enchantment-table-hack: true # automatically place lapis for 1.8 enchantment tables
+
+network:
+  network-mode: false # enable if you are running a network
+  default-server: lobby # name of the server players join first
+  netty-threads: 4 # worker threads for network io
+  servers:
+    lobby:
+      host: 127.0.0.1
+      port: 25564
+
+via:
+  enabled: false # enable translation for newer java versions
+  target-version: "auto" # backend server version or "auto" to ping it
