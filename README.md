@@ -1,7 +1,11 @@
-# Reunion
-The High-performance Minecraft LCE → Java proxy supporting TU13, TU19, Protocol 47 (1.8.x), & ViaVersion.
-
-Reunion is the first feature complete proxy implementation for LCE, built specifically for performance & use in production environments.
+<h1 align="center">Reunion</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/Mom%20get%20the-camera-ff69b4?style=for-the-badge" />
+</p>
+<p align="center">
+  The High-performance Minecraft LCE → Java proxy supporting TU13, TU19, Protocol 47 (1.8.x), & ViaVersion.<br>
+  Reunion is the first feature complete proxy implementation for LCE, built specifically for performance & use in production environments.
+</p>
 
 ## Usage (User Proxy)
 If you aren't a network owner & just want to play on a Java server:
