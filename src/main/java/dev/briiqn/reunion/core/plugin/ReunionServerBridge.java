@@ -155,7 +155,7 @@ public final class ReunionServerBridge implements ReunionProxyImpl.ServerBridge 
 
   @Override
   public String version() {
-    return "Reunion 1.0.0";
+    return "Reunion "+ReunionServer.releaseVersion;
   }
 
   @Override

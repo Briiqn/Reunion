@@ -26,7 +26,7 @@ import lombok.extern.log4j.Log4j2;
 public class VersionCommand extends GameCommand {
 
   public VersionCommand() {
-    super("version", "ver", "Get the current proxy version");
+    super("version", "version", "Get the current proxy version");
   }
 
   @Override
