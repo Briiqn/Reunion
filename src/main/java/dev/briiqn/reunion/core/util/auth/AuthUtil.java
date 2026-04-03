@@ -58,51 +58,6 @@ public class AuthUtil {
   private static final int PBKDF2_ITERATIONS = 10_000;
   private static final Path SAVE_PATH = Path.of("saves", "account.bin");
 
-  private static String getMacAddress() {
-    try {
-      InetAddress addr = InetAddress.getLocalHost();
-      NetworkInterface iface = NetworkInterface.getByInetAddress(addr);
-      if (iface != null) {
-        byte[] mac = iface.getHardwareAddress();
-        if (mac != null) {
-          StringBuilder sb = new StringBuilder();
-          for (byte b : mac) {
-            sb.append(String.format("%02X", b));
-          }
-          return sb.toString();
-        }
-      }
-      for (NetworkInterface ni : Collections.list(NetworkInterface.getNetworkInterfaces())) {
-        if (ni.isLoopback() || ni.isVirtual()) {
-          continue;
-        }
-        byte[] mac = ni.getHardwareAddress();
-        if (mac == null) {
-          continue;
-        }
-        StringBuilder sb = new StringBuilder();
-        for (byte b : mac) {
-          sb.append(String.format("%02X", b));
-        }
-        return sb.toString();
-      }
-    } catch (Exception ignored) {
-    }
-    return "NOMAC";
-  }
-
-  private static String getCpuFingerprint() {
-    com.sun.management.OperatingSystemMXBean os =
-        (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-    return System.getProperty("os.arch", "")
-        + System.getProperty("os.name", "")
-        + Runtime.getRuntime().availableProcessors()
-        + os.getTotalMemorySize();
-  }
-
-  private static char[] buildPass() {
-    return (getMacAddress() + "|" + getCpuFingerprint()).toCharArray();
-  }
 
   private static SecretKey deriveKey(char[] password, byte[] salt) throws GeneralSecurityException {
     SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
@@ -138,7 +93,7 @@ public class AuthUtil {
     JsonObject json = JavaAuthManager.toJson(authManager);
     byte[] payload = json.toString().getBytes(StandardCharsets.UTF_8);
 
-    char[] password = buildPass();
+    char[] password = HWIDUtil.buildPass();
     byte[] salt = new byte[SALT_LEN];
     new SecureRandom().nextBytes(salt);
 
@@ -168,7 +123,7 @@ public class AuthUtil {
       return null;
     }
 
-    char[] password = buildPass();
+    char[] password = HWIDUtil.buildPass();
 
     try (DataInputStream in = new DataInputStream(
         new BufferedInputStream(Files.newInputStream(SAVE_PATH)))) {
