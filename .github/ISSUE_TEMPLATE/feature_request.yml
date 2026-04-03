@@ -1,0 +1,79 @@
+name: Feature Request
+description: Suggest an idea for Reunion
+title: "[Feature]: "
+labels: ["enhancement"]
+assignees:
+  - Briiqn
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Feature Request
+        Use this form to suggest new protocol support, API additions, or improvements to the LCE-to-Java translation logic.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear and concise description of what the limitation is. (e.g., "The LCE client cannot see Java 1.20 armor trims").
+      placeholder: I am frustrated when [...]
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen. Explain how the proxy should translate this specific packet or behavior.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version-context
+    attributes:
+      label: Target LCE Version
+      description: Which Title Update or Protocol version does this feature primarily target?
+      options:
+        - TU13
+        - TU19 (MinecraftConsoles / smartcmd)
+        - Protocol 47 (1.8.x)
+        - General / All Versions
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical-details
+    attributes:
+      label: Technical Implementation Details
+      description: |
+        If known, specify:
+        - Which Plugin Messaging channels are involved?
+        - Are there specific Java packets that need remapping?
+        - Does this require an update to the Reunion API?
+      placeholder: "LCE Packet ID ... should map to Java Packet ..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: Have you considered using a Java-side plugin (like a ViaVersion addon) or a different proxy configuration?
+    validations:
+      required: false
+
+  - type: upload
+    id: media
+    attributes:
+      label: Mockups or Reference Media
+      description: If this is a UI/HUD feature, provide screenshots of how it looks in vanilla LCE vs. how you want it to look on the proxy.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context about the feature request here.
+    validations:
+      required: false
