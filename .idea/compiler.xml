@@ -11,6 +11,6 @@
         <module name="Reunion.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="23" />
+    <bytecodeTargetLevel target="22" />
   </component>
 </project>
