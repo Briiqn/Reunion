@@ -37,7 +37,21 @@ This repository does **not** contain any Minecraft LCE source code. It is a clea
 Full support for Bungeecord/Velocity IP forwarding & plugin messaging channels out of the box. For more details on which channels are supported, visit the [implementation source here](https://github.com/Briiqn/Reunion/tree/master/src/main/java/dev/briiqn/reunion/core/network/server/channel/impl).
 
 ## API
-You can create plugins using our API. It is currently basic & incomplete, but functionality is being developed. Include the latest API jar from the releases tab as a `compileOnly` dependency. Documentation is a work in progress, but LLM generated Javadocs are available in the source.
+You can create plugins using our API. It is currently basic & incomplete, but functionality is being developed. Documentation is a work in progress, but LLM generated Javadocs are available in the source.
+
+Add the API via [JitPack](https://jitpack.io):
+```kotlin
+repositories {
+    mavenCentral()
+    maven { url = uri("https://jitpack.io") }
+}
+
+dependencies {
+    compileOnly("com.github.briiqn:reunion:<COMMIT>")
+}
+```
+
+Replace `<COMMIT>` with the latest commit hash or tag from the releases tab.
 
 ## Forks & Backporting
 We do **not** support client forks that backport features to LCE (such as adding items/features that were never present), excluding official builds or backports initially developed by 4J Studios. Reunion supports 4J Studios' implementation as-is, not community additions.
