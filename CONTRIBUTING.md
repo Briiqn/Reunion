@@ -38,4 +38,4 @@ Not acceptable:
 
 ## Forks & Backporting
 
-We do **not** accept contributions that add support for unofficial client forks or community-backported content. See [Forks & Backporting](README.md) in the README.
+We do **not** accept contributions that add support for unofficial client forks or community-backported content. See [Forks & Backporting](README.md#forks--backporting) in the README.
