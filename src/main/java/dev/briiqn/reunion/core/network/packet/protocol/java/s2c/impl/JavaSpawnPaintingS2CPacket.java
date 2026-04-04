@@ -56,6 +56,7 @@ public final class JavaSpawnPaintingS2CPacket extends JavaS2CPacket {
     var em = cs.getEntityManager();
 
     int cid = em.map(entityId);
+    String title = toLegacyMotive(this.title);
 
     em.registerCategory(entityId,
         dev.briiqn.reunion.core.manager.EntityManager.EntityCategory.PAINTING);
@@ -69,5 +70,17 @@ public final class JavaSpawnPaintingS2CPacket extends JavaS2CPacket {
 
     PacketManager.sendToConsole(cs,
         new ConsoleAddPaintingS2CPacket(cid, title, cx, by, cz, dir));
+  }
+
+  // sometimes viaversion on a modern backend server lets the namespaced version of paintings (pretty sure introduced in 1.21) reach our proxy which causes our client to crash
+  private static String toLegacyMotive(String javaName) {
+    String name = javaName.contains(":") ? javaName.substring(javaName.indexOf(':') + 1) : javaName;
+    String lower = name.toLowerCase();
+    return switch (lower) {
+      case "skull_and_roses", "skullandrosesw" -> "SkullAndRoses";
+      case "burning_skull",   "burningskull"   -> "BurningSkull";
+      case "donkey_kong",     "donkeykong"      -> "DonkeyKong";
+      default -> Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
+    };
   }
 }
