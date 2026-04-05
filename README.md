@@ -25,6 +25,7 @@ If you are running a server network:
 
 ## Anticheat Compatibility
 Most anticheats are compatible, but standing on blocks without a proper 1:1 translation (e.g slime blocks) may cause flags.
+The speed potion effect is also calculated differently on LCE compared to Java
 Additionally, 4J Studios modified movement behavior when a controller is used. This logic is incompatible with most modern Java anticheats such as [**Polar**](https://polar.top) or **Grim**.
 
 ## Goals
