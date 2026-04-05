@@ -30,9 +30,19 @@ import dev.briiqn.reunion.core.network.packet.protocol.java.s2c.JavaS2CPacket;
 import dev.briiqn.reunion.core.session.JavaSession;
 import dev.briiqn.reunion.core.util.VarIntUtil;
 import io.netty.buffer.ByteBuf;
+import java.util.Set;
 
 @PacketInfo(side = PacketSide.JAVA_S2C, id = 0x10, supports = {47})
 public final class JavaSpawnPaintingS2CPacket extends JavaS2CPacket {
+
+  private static final Set<String> KNOWN_MOTIVES = Set.of(
+      "Kebab", "Aztec", "Alban", "Aztec2", "Bomb", "Plant", "Wasteland",
+      "Pool", "Courbet", "Sea", "Sunset", "Creebet",
+      "Wanderer", "Graham",
+      "Match", "Bust", "Stage", "Void", "SkullAndRoses", "Wither", "Fighters",
+      "Pointer", "Pigscene", "BurningSkull",
+      "Skeleton", "DonkeyKong"
+  );
 
   private int entityId;
   private String title;
@@ -72,15 +82,15 @@ public final class JavaSpawnPaintingS2CPacket extends JavaS2CPacket {
         new ConsoleAddPaintingS2CPacket(cid, title, cx, by, cz, dir));
   }
 
-  // sometimes viaversion on a modern backend server lets the namespaced version of paintings (pretty sure introduced in 1.21) reach our proxy which causes our client to crash
   private static String toLegacyMotive(String javaName) {
     String name = javaName.contains(":") ? javaName.substring(javaName.indexOf(':') + 1) : javaName;
     String lower = name.toLowerCase();
-    return switch (lower) {
-      case "skull_and_roses", "skullandrosesw" -> "SkullAndRoses";
-      case "burning_skull",   "burningskull"   -> "BurningSkull";
-      case "donkey_kong",     "donkeykong"      -> "DonkeyKong";
-      default -> Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
+    String result = switch (lower) {
+      case "skull_and_roses", "skullandroses" -> "SkullAndRoses";
+      case "burning_skull",   "burningskull"  -> "BurningSkull";
+      case "donkey_kong",     "donkeykong"    -> "DonkeyKong";
+      default -> lower.isEmpty() ? "Kebab" : Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
     };
+    return KNOWN_MOTIVES.contains(result) ? result : "Kebab";
   }
 }

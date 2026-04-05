@@ -97,12 +97,15 @@ public abstract class ConsolePlayerFlyingC2SPacket extends ConsoleC2SPacket {
     if (session.hasPendingTeleport()) {
       if (hasPos && hasRot) {
         Vec3d coords = session.consumePendingTeleport();
+        Vec2f teleportRot = lastRot;
         session.setLastPos(new Vec3d(javaX, javaY, javaZ));
         session.setLastRot(new Vec2f(newYaw, newPitch));
         session.getPendingTeleportAcks().incrementAndGet();
         PacketManager.sendToJava(session.getJavaSession(),
             new JavaPlayerPositionLookC2SPacket(
-                coords.x(), coords.y(), coords.z(), newYaw, newPitch, onGround));
+                coords.x(), coords.y(), coords.z(),
+                teleportRot.yaw(), teleportRot.pitch(),
+                false));
       } else {
         PacketManager.sendToJava(session.getJavaSession(), new JavaPlayerC2SPacket(onGround));
       }
