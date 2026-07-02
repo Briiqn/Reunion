@@ -70,7 +70,7 @@ import lombok.extern.log4j.Log4j2;
 public final class ReunionServer {
 
   private static final ByteBufAllocator DIRECT_ALLOC = new PooledByteBufAllocator(true);
-  public static String releaseVersion = "1.0.0";
+  public static String releaseVersion = "1.0.1";
   @Getter(AccessLevel.NONE)
   public static int maxSupportedClientProtocol = 78;
 
